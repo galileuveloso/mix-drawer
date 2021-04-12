@@ -1,0 +1,113 @@
+<div class="row" >
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group topicos">
+                    <div (click)="AddTeamCollapse()">
+                        <label for="time">Teams</label>
+                        <span class="glyphicon glyphicon-chevron-down pull-right iconcollapse" id="iconteamscollapse"></span>
+                    </div> 
+                    <div class="row collapse" id="teamcollapse">
+                        <div class="col-md-10">
+                            <input type="text" id="teams" class="form-control" placeholder="Enter the team name..." [(ngModel)]="team.nome">
+                        </div>
+                        <div class="col-md-2" id="diviconsteam">
+                            <span class="glyphicon glyphicon-ok iconteam" style="color: green;" (click)="AddTeam()"></span>
+                            <span class="glyphicon glyphicon-remove iconteam"  style="color: red;" (click)="CancelAddTeam()"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p *ngIf="teamsCadastrados.length == 0" class="alert alert-warning" role="alert">No team registered.</p>
+                                <ul class="list-group list-group-flush">
+                                    <li *ngFor="let team of teamsCadastrados" class="list-group-item">{{team.nome}}  <span class="glyphicon glyphicon-remove pull-right"  style="color: red;" (click)="RemoveTeam(team.id)"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group topicos">
+                    <div (click)="AddPlayersCollapse()">
+                        <label for="time">Players</label>
+                        <span class="glyphicon glyphicon-chevron-down pull-right iconcollapse" id="iconplayerscollapse"></span>
+                    </div> 
+                    <div class="row collapse" id="playerscollapse">
+                        <div class="col-md-10">
+                            <input type="text" id="players" class="form-control" placeholder="Enter the player name..." [(ngModel)]="player.nome">
+                        </div>
+                        <div class="col-md-2" id="diviconsplayer">
+                            <span class="glyphicon glyphicon-ok iconteam" style="color: green;" (click)="AddPlayer()"></span>
+                            <span class="glyphicon glyphicon-remove iconteam"  style="color: red;" (click)="CancelAddPlayer()"></span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p *ngIf="playersCadastrados.length == 0" class="alert alert-warning"role="alert">No player registered.</p>
+                                <ul class="list-group list-group-flush">
+                                    <li *ngFor="let player of playersCadastrados" class="list-group-item">{{player.nome}}<span class="glyphicon glyphicon-remove pull-right"  style="color: red;" (click)="RemovePlayer(player.id)"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group topicos" (click)="MapsCollapse()">
+                <label>Map Pool</label>
+                    <span class="glyphicon glyphicon-chevron-down pull-right iconcollapse" id="iconmapscollapse"></span>
+                </div>
+                <div *ngIf="mapsCadastrados.length == 0"  id="alert-player" class="form-group">
+                    <p class="alert alert-warning" role="alert">No map registered.</p>
+                </div>
+                <ul id="mapscollapse" class="collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <li class="card card-ul-map" *ngFor="let map of maps">
+                                <img class="card-img-map {{VerificaClassSelect(map)}}" id="map{{map.nome}}" src="{{map.src}}" (click)="SelectMap(map)">
+                            </li>
+                        </div>
+                        <div class="col-md-5" id="games">
+                            <li class="card card-ul-game" *ngFor="let game of games" (click) = "SelectGame(game.nome)">
+                                <div id="div{{game.nome}}">
+                                    <img class="card-img-game {{VerificaClassSelectGame(game)}}" src="{{game.src}}" id="{{game.nome}}">
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button class="btn btn-default" (click)="Draw()">Draw</button>
+                </div>
+                <div class="form-group">
+                    <div *ngFor="let team of match.teams">
+                        <p>{{team.nome}}</p>
+                        <div *ngFor="let player of team.players">
+                            <p>{{player.nome}}</p>
+                        </div>
+                    </div>
+                    <p>Out:</p>
+                    <div *ngFor="let out of match.out">
+                        <p>{{out.nome}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="match.teams.length > 0">
+            <div *ngFor="let team of match.teams" class="col-md-{{TamanhoDiv()}} topico form-group" style="text-align: center;">
+                <label>{{team.nome}}</label>
+            </div>
+        </div>
+    </div>
+</div>
