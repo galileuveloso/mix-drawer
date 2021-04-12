@@ -98,6 +98,13 @@ export class SortearComponent implements OnInit {
     this.match = this.drawerService.Draw(this.teamsCadastrados, this.playersCadastrados, this.mapsCadastrados);
   }
 
+  Clear(): void
+  {
+    this.mapsCadastrados = [];
+    this.playersCadastrados = [];
+    this.teamsCadastrados = [];
+  }
+
   MapsCollapse(): void
   {
     this.ToogleIconCollapse('mapscollapse','iconmapscollapse');
@@ -169,6 +176,12 @@ export class SortearComponent implements OnInit {
   TamanhoDiv(): string
   {
     return (12 / this.match.teams.length).toString()[0]; 
+  }
+
+  MostraOpcaoSorteio(): boolean {
+    if (this.teamsCadastrados.length > 0 && this.mapsCadastrados.length > 0 && this.playersCadastrados.length > 0)
+      return true;
+    return false;
   }
 
 }

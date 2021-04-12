@@ -94,7 +94,7 @@ export class DrawerService {
 
   Draw(teams: Team[], players: Player[], maps: Map[]): Match
   {
-    let map = maps[Math.floor(Math.random() * (maps.length +1))];
+    let map = this.Shuffle(maps)[0];
     players = this.Shuffle(this.ListarPlayers());
     const intervalo = Math.trunc(players.length / teams.length);
     let i = 0;
@@ -110,7 +110,7 @@ export class DrawerService {
   }
 
 
-   Shuffle(array: Player[]) {
+  Shuffle(array: any[]) {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
