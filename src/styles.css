@@ -53,6 +53,7 @@
     position: absolute;
     background-color: white;
     border-radius: 6px;
+    z-index: 30;
 }
 .form-group{
     padding: 3px;
@@ -100,4 +101,14 @@ label{
 }
 .list-group-flush{
     text-align: left;
+}
+.button-draw-row{
+    text-align: right;
+    padding: 1%;
+}
+#btn-clear {
+  margin-right: 1%;
+}
+.nav-bar{
+    background-color: white;
 }
